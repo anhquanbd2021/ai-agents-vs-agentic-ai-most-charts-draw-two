@@ -1,0 +1,125 @@
+﻿<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <meta name='description' content='Guide for the Ladder Lab — how to read the four rungs, the runtime fence, and the seeded failure.'>
+  <title>Guide — Ladder Lab</title>
+  <link rel='stylesheet' href='/styles.css'>
+<!-- pb-shell --><link rel="stylesheet" href="./pb-shell.css"><!-- pb-shell --><!-- pb-back --><link rel="stylesheet" href="./pb-back.css"><!-- pb-back --></head>
+<body>
+<main>
+  <a class="skip-link" href="#rungs-title">Skip to the guide</a>
+  <nav aria-label="Primary"><a href="/">Lab</a><a aria-current="page" href="/guide.html">Guide</a><a href="https://github.com/anhquanbd2021/ai-agents-vs-agentic-ai-most-charts-draw-two">Source</a></nav>
+  <header class='hero compact'>
+    <div>
+      <p class='eyebrow'>Ladder Lab · guide</p>
+      <h1>Read the ladder<br>before the label.</h1>
+      <p class='lede'>Three controls change the same pipeline: the rung, the fence, and whether the guard is broken. This guide shows what each one proves.</p>
+    </div>
+    <p class='warning'><strong>Educational model.</strong> Deterministic and local — no real payments or external services.</p>
+  </header>
+  <section class='guide-section' aria-labelledby='rungs-title'>
+    <h2 id='rungs-title'>1. Choose the rung</h2>
+    <p>Pick L0, L1, L2, or L3. The lab uses the same model, tools, memory, and loop on every rung — only the decision boundary changes.</p>
+    <div class='control-grid'>
+      <article class='panel control'>
+        <h3>L0 — Prompt</h3>
+        <p>A human chooses every step. The model can suggest, but nothing executes without you.</p>
+        <dl>
+          <dt>Proves</dt>
+          <dd>Richer output is not richer autonomy.</dd>
+          <dt>Key detail</dt>
+          <dd><code>decideRefund()</code> always returns <code>human</code>.</dd>
+        </dl>
+      </article>
+      <article class='panel control'>
+        <h3>L1 — Assisted</h3>
+        <p>The model proposes a plan, and a human approves each action before it runs.</p>
+        <dl>
+          <dt>Proves</dt>
+          <dd>Approval throughput is a hard ceiling.</dd>
+          <dt>Key detail</dt>
+          <dd>Every step returns <code>human</code> until approval is granted.</dd>
+        </dl>
+      </article>
+      <article class='panel control'>
+        <h3>L2 — Agent</h3>
+        <p>The agent acts alone inside a fenced scope. Above the fence, it asks.</p>
+        <dl>
+          <dt>Proves</dt>
+          <dd>Autonomy is a runtime boundary, not a badge.</dd>
+          <dt>Key detail</dt>
+          <dd>The fence is <code>fenceUsd</code>, enforced at decision time.</dd>
+        </dl>
+      </article>
+      <article class='panel control'>
+        <h3>L3 — Agentic</h3>
+        <p>A coordinator delegates to other agents and merges their results.</p>
+        <dl>
+          <dt>Proves</dt>
+          <dd>Coordination is the real jump, not a rename.</dd>
+          <dt>Key detail</dt>
+          <dd><code>coordinateCheckout()</code> only assigns sub-agents at L3.</dd>
+        </dl>
+      </article>
+    </div>
+  </section>
+  <section class='guide-section' aria-labelledby='fence-title'>
+    <h2 id='fence-title'>2. Watch the fence</h2>
+    <p>Run the same checkout batch at L2. The agent executes refunds up to the fence and hands off the rest.</p>
+    <div class='control-grid'>
+      <article class='panel control'>
+        <h3>Runtime guard</h3>
+        <p>The check runs on every call. It is not a policy comment in the code.</p>
+        <dl>
+          <dt>Proves</dt>
+          <dd>Fences are executable.</dd>
+          <dt>Key detail</dt>
+          <dd>Default is <code>50</code> USD per refund.</dd>
+        </dl>
+      </article>
+      <article class='panel control'>
+        <h3>Seeded failure</h3>
+        <p>Toggle <strong>break the fence</strong>. The guard disappears and large refunds execute alone.</p>
+        <dl>
+          <dt>Proves</dt>
+          <dd>Runaway behavior is reproducible.</dd>
+          <dt>Key detail</dt>
+          <dd>Status changes from <code>fenced</code> to <code>runaway</code>.</dd>
+        </dl>
+      </article>
+    </div>
+  </section>
+  <section class='guide-section' aria-labelledby='coordination-title'>
+    <h2 id='coordination-title'>3. See the coordination jump</h2>
+    <p>Run the same batch at L3. The coordinator calls the payments and loyalty agents, then reports one outcome.</p>
+    <div class='control-grid'>
+      <article class='panel control'>
+        <h3>Typed contracts</h3>
+        <p>Each sub-agent result is a typed record, not a string.</p>
+        <dl>
+          <dt>Proves</dt>
+          <dd>Contracts make delegation inspectable.</dd>
+          <dt>Key detail</dt>
+          <dd><code>toolCalls</code> records every sub-agent invocation.</dd>
+        </dl>
+      </article>
+      <article class='panel control'>
+        <h3>Goal success</h3>
+        <p>The metric is whether the checkout goal completed, not how many agents ran.</p>
+        <dl>
+          <dt>Proves</dt>
+          <dd>Agent count is not autonomy.</dd>
+          <dt>Key detail</dt>
+          <dd>The summary reports handoffs and executions together.</dd>
+        </dl>
+      </article>
+    </div>
+  </section>
+</main>
+<script>document.querySelectorAll('.guide-section h2').forEach(h2=>h2.parentElement.setAttribute('tabindex','-1'));</script>
+<!-- pb-shell --><a class="pb-shell" href="https://github.com/anhquanbd2021/ai-agents-vs-agentic-ai-most-charts-draw-two" title="ai-agents-vs-agentic-ai-most-charts-draw-two — an Article Playbook demo (view source)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="9" height="9" rx="2" fill="#48A080"/><rect x="13" y="2" width="9" height="9" rx="2" fill="#48A080" opacity=".45"/><rect x="2" y="13" width="9" height="9" rx="2" fill="#48A080" opacity=".45"/><rect x="13" y="13" width="9" height="9" rx="4.5" fill="#48A080"/></svg><b>ai-agents-vs-agentic-ai-most-charts-draw-two</b><i>DEMO</i></a><!-- pb-shell -->
+<!-- pb-back --><a class="pb-back" id="pb-back" href="https://github.com/anhquanbd2021/ai-agents-vs-agentic-ai-most-charts-draw-two" title="Back to the article — ai-agents-vs-agentic-ai-most-charts-draw-two">← Article <i>PLAYBOOK</i></a><script>(function(){var a=document.getElementById("pb-back");if(!a)return;var h=location.hostname;if(/^(localhost|127\\.0\\.0\\.1|192\\.168\\.|10\\.|172\\.(1[6-9]|2[0-9]|3[01])\\.)/.test(h)){a.href="//"+h+":"+(/^(localhost|127\\.0\\.0\\.1)$/.test(h)?"1234":"30082")+"/microsites/article.html?slug=ai-agents-vs-agentic-ai-most-charts-draw-two";}})();</script><!-- pb-back --></body>
+</html>
+
